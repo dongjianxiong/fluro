@@ -231,6 +231,16 @@ class Router {
     return match.route;
   }
 
+  bool popUntil(BuildContext context, String name){
+    if(context != null && name != null){
+      Navigator.popUntil(context, ModalRoute.withName(name));
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
   /// Prints the route tree so you can analyze it.
   void printTree() {
     _routeTree.printTree();
