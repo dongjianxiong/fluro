@@ -15,6 +15,13 @@ enum HandlerType {
   function,
 }
 
+class RouterParameters{
+  
+  Map<String, List<String>> params;
+  Map<String, dynamic> extraParams;
+  RouterParameters({this.params, this.extraParams});
+}
+
 ///
 class Handler {
   Handler({this.type = HandlerType.route, this.handlerFunc});
@@ -27,8 +34,10 @@ typedef Route<T> RouteCreator<T>(
     RouteSettings route, Map<String, List<String>> parameters);
 
 ///
+// typedef Widget HandlerFunc(
+//     BuildContext context, Map<String, List<String>> parameters);
 typedef Widget HandlerFunc(
-    BuildContext context, Map<String, List<String>> parameters);
+    BuildContext context, RouterParameters parameters);
 
 ///
 class AppRoute {

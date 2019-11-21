@@ -94,7 +94,10 @@ class Router {
       return MaterialPageRoute<Null>(
           settings: routeSettings,
           builder: (BuildContext context) {
-            return notFoundHandler.handlerFunc(context, parameters);
+            return notFoundHandler.handlerFunc(context, RouterParameters(
+              params:parameters,
+              extraParams:routeSettings.arguments,
+            ));
           });
     };
     return creator(RouteSettings(name: path), null);
@@ -125,7 +128,10 @@ class Router {
     Map<String, List<String>> parameters =
         match?.parameters ?? <String, List<String>>{};
     if (handler.type == HandlerType.function) {
-      handler.handlerFunc(buildContext, parameters);
+      handler.handlerFunc(buildContext, RouterParameters(
+        params:parameters,
+        extraParams:routeSettings.arguments,
+      ));
       return RouteMatch(matchType: RouteMatchType.nonVisual);
     }
 
@@ -139,14 +145,20 @@ class Router {
               settings: routeSettings,
               fullscreenDialog: transition == TransitionType.nativeModal,
               builder: (BuildContext context) {
-                return handler.handlerFunc(context, parameters);
+                return handler.handlerFunc(context, RouterParameters(
+                  params:parameters,
+                  extraParams:routeSettings.arguments,
+                ));
               });
         } else {
           return MaterialPageRoute<dynamic>(
               settings: routeSettings,
               fullscreenDialog: transition == TransitionType.nativeModal,
               builder: (BuildContext context) {
-                return handler.handlerFunc(context, parameters);
+                return handler.handlerFunc(context, RouterParameters(
+                  params:parameters,
+                  extraParams:routeSettings.arguments,
+                ));
               });
         }
       } else if (transition == TransitionType.material ||
@@ -156,7 +168,10 @@ class Router {
             fullscreenDialog:
                 transition == TransitionType.materialFullScreenDialog,
             builder: (BuildContext context) {
-              return handler.handlerFunc(context, parameters);
+              return handler.handlerFunc(context, RouterParameters(
+                params:parameters,
+                extraParams:routeSettings.arguments,
+              ));
             });
       } else if (transition == TransitionType.cupertino ||
           transition == TransitionType.cupertinoFullScreenDialog) {
@@ -165,7 +180,10 @@ class Router {
             fullscreenDialog:
                 transition == TransitionType.cupertinoFullScreenDialog,
             builder: (BuildContext context) {
-              return handler.handlerFunc(context, parameters);
+              return handler.handlerFunc(context, RouterParameters(
+                params:parameters,
+                extraParams:routeSettings.arguments,
+              ));
             });
       } else {
         var routeTransitionsBuilder;
@@ -178,7 +196,10 @@ class Router {
           settings: routeSettings,
           pageBuilder: (BuildContext context, Animation<double> animation,
               Animation<double> secondaryAnimation) {
-            return handler.handlerFunc(context, parameters);
+            return handler.handlerFunc(context, RouterParameters(
+              params:parameters,
+              extraParams:routeSettings.arguments,
+            ));
           },
           transitionDuration: transitionDuration,
           transitionsBuilder: routeTransitionsBuilder,
