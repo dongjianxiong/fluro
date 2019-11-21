@@ -18,8 +18,8 @@ enum HandlerType {
 class RouterParameters{
   
   Map<String, List<String>> params;
-  Map<String, dynamic> extraParams;
-  RouterParameters({this.params, this.extraParams});
+  RouteSettings routeSettings;
+  RouterParameters({this.params, this.routeSettings});
 }
 
 ///

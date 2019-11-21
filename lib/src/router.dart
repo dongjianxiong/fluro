@@ -96,7 +96,7 @@ class Router {
           builder: (BuildContext context) {
             return notFoundHandler.handlerFunc(context, RouterParameters(
               params:parameters,
-              extraParams:routeSettings.arguments,
+              routeSettings:routeSettings,
             ));
           });
     };
@@ -130,7 +130,7 @@ class Router {
     if (handler.type == HandlerType.function) {
       handler.handlerFunc(buildContext, RouterParameters(
         params:parameters,
-        extraParams:routeSettings.arguments,
+        routeSettings:routeSettings,
       ));
       return RouteMatch(matchType: RouteMatchType.nonVisual);
     }
@@ -147,7 +147,7 @@ class Router {
               builder: (BuildContext context) {
                 return handler.handlerFunc(context, RouterParameters(
                   params:parameters,
-                  extraParams:routeSettings.arguments,
+                  routeSettings:routeSettings,
                 ));
               });
         } else {
@@ -157,7 +157,7 @@ class Router {
               builder: (BuildContext context) {
                 return handler.handlerFunc(context, RouterParameters(
                   params:parameters,
-                  extraParams:routeSettings.arguments,
+                  routeSettings:routeSettings,
                 ));
               });
         }
@@ -170,7 +170,7 @@ class Router {
             builder: (BuildContext context) {
               return handler.handlerFunc(context, RouterParameters(
                 params:parameters,
-                extraParams:routeSettings.arguments,
+                routeSettings:routeSettings,
               ));
             });
       } else if (transition == TransitionType.cupertino ||
@@ -182,7 +182,7 @@ class Router {
             builder: (BuildContext context) {
               return handler.handlerFunc(context, RouterParameters(
                 params:parameters,
-                extraParams:routeSettings.arguments,
+                routeSettings:routeSettings,
               ));
             });
       } else {
@@ -198,7 +198,7 @@ class Router {
               Animation<double> secondaryAnimation) {
             return handler.handlerFunc(context, RouterParameters(
               params:parameters,
-              extraParams:routeSettings.arguments,
+              routeSettings:routeSettings,
             ));
           },
           transitionDuration: transitionDuration,
